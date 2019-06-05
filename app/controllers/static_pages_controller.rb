@@ -9,6 +9,9 @@ class StaticPagesController < ApplicationController
 
   def help
   end
+  
+  def tracker
+  end
 
   def about
   end
