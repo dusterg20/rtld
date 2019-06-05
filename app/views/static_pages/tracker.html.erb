@@ -1,0 +1,18 @@
+<% if signed_in? %>
+
+
+
+
+
+<% else %>
+  <div class="center hero-unit">
+    <h1>Stonecrop Technologies</h1>
+
+    <h2>
+      RTLD (Real Time Location Tracking) Warehouse App
+    </h2>
+       
+  </div>
+
+  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% end %>
