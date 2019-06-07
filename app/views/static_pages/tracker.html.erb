@@ -1,9 +1,35 @@
 <% if signed_in? %>
+<canvas id="myChart" width="1216" height="838" style="background-image: url(<% image_tag('stonecorp.jpg') %>)"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var scatterChart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'Scatter Dataset',
+            data: [{
+                x: 10,
+                y: 10
+            }, {
+                x: 0,
+                y: 20
+            }, {
+                x: 20,
+                y: 0
+            }]
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+});
 
-
-
-
-
+</script>
 <% else %>
   <div class="center hero-unit">
     <h1>Stonecrop Technologies</h1>
@@ -13,6 +39,7 @@
     </h2>
        
   </div>
+
 
   <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
 <% end %>

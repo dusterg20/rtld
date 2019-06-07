@@ -1,4 +1,16 @@
 Rtld::Application.routes.draw do
+  get 'dogs/index'
+  get 'dogs/show'
+  get 'dogs/new'
+  get 'dogs/edit'
+   
+  Rails.application.routes.draw do
+    resources :tag
+  end
+  Rails.application.routes.draw do
+    resources :tracker
+  end 
+  
   resources :users do
     member do
       get :following, :followers
@@ -14,5 +26,5 @@ Rtld::Application.routes.draw do
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/tracker', to: 'static_pages#tracker', via: 'get'
+ 
 end

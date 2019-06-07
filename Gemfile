@@ -13,6 +13,7 @@ gem 'mysql'
 gem 'mysql2', '~> 0.3.10'
 gem 'rake', '< 11.0'
 gem 'rename'
+gem 'chart-js-rails'
 
 group :development, :test do
   #gem 'rspec-rails', '2.13.1'

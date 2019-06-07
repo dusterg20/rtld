@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190605205317) do
+ActiveRecord::Schema.define(version: 20190607011329) do
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -38,6 +38,24 @@ ActiveRecord::Schema.define(version: 20190605205317) do
     t.float    "xy_x",         limit: 30,                          null: false
     t.decimal  "xy_y",                    precision: 30, scale: 7, null: false
     t.string   "xy_tagid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "key_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["key_id"], name: "key_id", unique: true, using: :btree
+
+  create_table "tracks", force: true do |t|
+    t.datetime "xytimestamp"
+    t.string   "xyx"
+    t.string   "xyy"
+    t.string   "xytagid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
