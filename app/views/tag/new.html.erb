@@ -1,0 +1,8 @@
+<h3>Create a New Tracking Tag</h3>
+<%= form_for @tag, url: {action: "create"} do |f| %>
+  <%= f.text_field :key_id, placeholder: "Unique Tag ID (each tag already has this assigned)" %>
+  <%= f.text_field :description, placeholder: "Tag Description or Device attached to" %>
+
+  <%= f.submit "Create" %>
+<% end %>
+

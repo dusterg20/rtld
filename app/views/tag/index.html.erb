@@ -1,0 +1,8 @@
+<ul>
+  <% @tags.each do |tag| %>
+    <li><b><%= link_to tag.key_id, tag_path(tag) %></b>
+        <%= link_to "Edit", edit_tag_path(tag), method: 'get'%>
+        <%= link_to "Delete", tag_path(tag), method: 'delete', data: { confirm: 'Are you sure?' } %></li>
+  <% end %>
+</ul>
+<%= link_to "Add a New tag", new_tag_path %>

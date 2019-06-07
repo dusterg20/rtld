@@ -1,0 +1,7 @@
+ <h3>Update Tag Details</h3>
+<%= form_for @tag do |form| %>
+  <%= form.text_field :key_id, placeholder: "key_id" %>
+  <%= form.text_field :description, placeholder: "description" %>
+
+  <%= form.submit %>
+<% end %>
