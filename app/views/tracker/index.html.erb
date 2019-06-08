@@ -1,28 +1,29 @@
-<meta http-equiv="refresh" content="5">
-<table>
-    <tr><td width="50">Tag ID</td><td width="100">X Coordinate</td><td width="100">Y Coordinate</td><td width="200">Date Time</td></tr>
-    <% @tracks.each do |track| %>
-        <tr><td width="50"><%=link_to track.xytagid, tracker_path(track) %></td><td width="100"><%= track.xyx %></td><td width="100"><%= track.xyy %></td><td width="200"><%= track.xytimestamp %></td></tr>
-    <% end %>
-</table>
-
-
-<canvas id="myChart" width="1216" height="838" style="background-image: url()"></canvas>
+<!--<meta http-equiv="refresh" content="5">-->
+<table class="stonecrop">
+<canvas id="myChart" width="1216" height="838" style="background-image: url(<%= image_tag("rails.png", alt: "Rails") %>)"></canvas>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var scatterChart = new Chart(ctx, {
-    type: 'scatter',
+    type: 'scatter',                                       
     data: {            
-        datasets: [ <% @tracks.each do |track| %>
+        datasets: [ <% @tags_with_tracking_events.keys.each do |key| %>
         {   <% rr=rand(255) %><% gr=rand(255) %><% br=rand(255) %>
         
-            label: '<%= track.xytagid %>',
+            label: '<%= key %>',
             backgroundColor: "rgba(<%= rr %>,<%= gr %>,<%= br %>,0.4)",
             borderColor: "rgba(<%= rr %>,<%= gr %>,<%= br %>,1)",
-            data: [{ 
-                x: <%= track.xyx %>,
-                y: <%= track.xyy %>
-                }]
+            data: [ <% tracking_events = @tags_with_tracking_events[key] %>
+                    <% total_events = tracking_events.size %>
+                    <% tracking_events.each_with_index do |tracking_event, i| %>
+                {
+                x: <%= tracking_event.xyx %>,
+                y: <%= tracking_event.xyy %>
+                }<% unless total_events == i+1 %>
+                 , <% end %>
+                 <% end %>
+            
+                
+                ]
         },<% end %>
         {                
             label: '',
@@ -40,13 +41,26 @@ var scatterChart = new Chart(ctx, {
     },
     options: {
         animation:{duration: 0},
-        scales: {
-            xAxes: [{
+        scales: {  
+              xAxes: [{
+                display: false,
                 type: 'linear',
                 position: 'bottom'
-            }]
+            }],
+              yAxes: [{
+                display: false }]
         }
     }
 });
 
 </script>
+</table>
+<table>
+    <tr><td width="50">Tag ID</td><td width="100">X Coordinate</td><td width="100">Y Coordinate</td><td width="200">Date Time</td></tr>
+    <% tracking_events = @tags_with_tracking_events[key] %>
+    <% tracking_events.each do |tracking_event| %>
+        <tr><td width="50"><%= link_to tracking_event.xytagid, tracker_path(track) %></td><td width="100"><%= tracking_event.xyx %></td>
+        <td width="100"><%= tracking_event.xyy %>
+        </td><td width="200"><%= track.xytimestamp %></td></tr>
+    <% end %>
+</table>
