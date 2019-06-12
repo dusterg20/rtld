@@ -3,11 +3,11 @@
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var scatterChart = new Chart(ctx, {
-    type: 'scatter',                                       
-    data: {            
+    type: 'scatter',
+    data: {
         datasets: [ <% @tags_with_tracking_events.keys.each do |key| %>
         {   <% rr=rand(255) %><% gr=rand(255) %><% br=rand(255) %>
-        
+
             label: '<%= key %>',
             backgroundColor: "rgba(<%= rr %>,<%= gr %>,<%= br %>,0.4)",
             borderColor: "rgba(<%= rr %>,<%= gr %>,<%= br %>,1)",
@@ -20,16 +20,16 @@ var scatterChart = new Chart(ctx, {
                 }<% unless total_events == i+1 %>
                  , <% end %>
                  <% end %>
-            
-                
+
+
                 ]
         },<% end %>
-        {                
+        {
             label: 'Anchors',
             backgroundColor: "rgba(255,0,0,1)",
             borderColor: "rgba(255,0,0,1)",
             pointStyle: "triangle",
-            data: [ 
+            data: [
                {
                 x: 0,
                 y: 0
@@ -44,12 +44,12 @@ var scatterChart = new Chart(ctx, {
                 y: 13.56
             }]
          },
-         {                
+         {
             label: '',
             backgroundColor: "rgba(0,0,0,0)",
             borderColor: "rgba(0,0,0,0)",
             pointStyle: "triangle",
-            data: [ 
+            data: [
                {
                 x: 0,
                 y: 0
@@ -62,13 +62,12 @@ var scatterChart = new Chart(ctx, {
             },{
                 x: 0,
                 y: 130
-            }]   
+            }]
          }]
     },
     options: {
-        backgroundColor: "rgba(255,125,125, 0.6)",
         animation:{duration: 0},
-        scales: {  
+        scales: {
               xAxes: [{
                 display: true,
                 type: 'linear',
@@ -76,6 +75,14 @@ var scatterChart = new Chart(ctx, {
             }],
               yAxes: [{
                 display: true }]
+        },
+        layout: {
+            padding: {
+                left: -10,
+                right: 20,
+                top: 0,
+                bottom: -5
+            }
         }
     }
 });
