@@ -11,7 +11,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'mysql'
 gem 'mysql2', '~> 0.3.10'
-gem 'rake', '< 11.0'
+gem 'rake', '< 14.0'
 gem 'rename'
 gem 'chart-js-rails'
 
